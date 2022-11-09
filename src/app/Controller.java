@@ -25,7 +25,7 @@ public class Controller {
     }
 
     public void addEquipe(AlunoModel alunoModel){
-        equipe.add(alunoModel);
+        if(!equipe.contains(alunoModel)) equipe.add(alunoModel);
     }
 
 }

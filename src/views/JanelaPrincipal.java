@@ -3,7 +3,11 @@ package views;
 import app.Controller;
 import models.AlunoModel;
 import models.EquipeListModel;
+import models.EquipeModel;
+import models.ProjetoModel;
 import repositories.AlunoRepository;
+import repositories.EquipeRepository;
+import repositories.ProjetoRepository;
 import repositories.Validator;
 
 import javax.swing.*;
@@ -61,17 +65,26 @@ public class JanelaPrincipal extends JFrame {
 
         });
         limparFormulárioButton.addActionListener(e -> {
-            Controller.getInstance().getEquipe().clear();
-            tituloField.setText("");
-            areaField.setText("");
-            estadoField.setText("");
-            estadoField.setText("");
-            cidadeField.setText("");
-            cidadeField.setText("");
-            descricaoArea.setText("");
-            matriculaField.setText("");
-            render();
+            liparForm();
+        });
 
+        cadastrarProjetoButton.addActionListener(e->{
+            if(validarForm()){
+
+                int id_equipe = EquipeRepository.nEquipes() +1;
+                EquipeModel equipe = new EquipeModel(id_equipe,controller.getEquipe());
+                EquipeRepository.add(equipe);
+
+                ProjetoModel projeto = new ProjetoModel();
+                projeto.setArea(areaField.getText());
+                projeto.setCidade(cidadeField.getText());
+                projeto.setEstado(estadoField.getText());
+                projeto.setDescricao(descricaoArea.getText());
+                projeto.setEquipe(equipe);
+                projeto.setTitulo(tituloField.getText());
+                ProjetoRepository.add(projeto);
+                liparForm();
+            }
         });
 
         atualizarDadosDoAlunoButton.addActionListener(e -> {
@@ -88,8 +101,50 @@ public class JanelaPrincipal extends JFrame {
 
     }
 
+    private boolean validarForm(){
+
+        if(!Validator.validarTexto(tituloField.getText())){
+            JOptionPane.showConfirmDialog(this,"Digite um título válido:","Erro",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(!Validator.validarTexto(areaField.getText())){
+            JOptionPane.showConfirmDialog(this,"Escolha uma area:","Erro",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(!Validator.validarTexto(tituloField.getText())){
+            JOptionPane.showConfirmDialog(this,"Digite um título válido:","Erro",JOptionPane.ERROR_MESSAGE);
+            return  false;
+        }
+        if(!Validator.validarTexto(cidadeField.getText())){
+            JOptionPane.showConfirmDialog(this,"Digite uma cidade válido:","Erro",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(!Validator.validarTexto(estadoField.getText())){
+            JOptionPane.showConfirmDialog(this,"Digite um estado válido:","Erro",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(controller.getEquipe().size() == 0){
+            JOptionPane.showConfirmDialog(this,"Equipe deve ter ao menos 1 aluno","Erro",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+
 
     public void render(){
         SwingUtilities.updateComponentTreeUI(list1);
+    }
+    public void liparForm(){
+        Controller.getInstance().getEquipe().clear();
+        tituloField.setText("");
+        areaField.setText("");
+        estadoField.setText("");
+        estadoField.setText("");
+        cidadeField.setText("");
+        cidadeField.setText("");
+        descricaoArea.setText("");
+        matriculaField.setText("");
+        render();
+
     }
 }
