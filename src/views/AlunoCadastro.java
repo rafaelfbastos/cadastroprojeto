@@ -22,13 +22,15 @@ public class AlunoCadastro extends JFrame{
     private JTextField EmailField;
     private JPasswordField passwordField;
 
-    public AlunoCadastro(Controller controller) {
+    public AlunoCadastro(AlunoModel alunoModel) {
         super("Cadastro Aluno");
-        this.controller = controller;
+        int matricula = alunoModel.getMatricula();
         add(panel);
         setLocation(200,100);
         setPreferredSize(new Dimension(400,400));
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        matriculaField.setText(""+matricula);
+        matriculaField.setEditable(false);
         cadastrarButton.addActionListener(e -> {
             if(validarInput()){
                 AlunoModel aluno = new AlunoModel();
@@ -37,9 +39,8 @@ public class AlunoCadastro extends JFrame{
                 aluno.setEmail(EmailField.getText());
                 aluno.setTelefone(telefoneField.getText());
                 aluno.setNome(nomeField.getText());
-                AlunoRepository.gravar(aluno);
-                controller.addEquipe(aluno);
-                Main.janelaPrincipal.render();
+                aluno.setSenha(String.valueOf(passwordField.getPassword()).hashCode());
+                AlunoRepository.update(aluno);
                 dispose();
 
             }
@@ -47,7 +48,6 @@ public class AlunoCadastro extends JFrame{
 
         pack();
         setVisible(true);
-
     }
 
     public AlunoCadastro(Controller controller, int matricula){

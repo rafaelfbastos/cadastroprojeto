@@ -1,6 +1,7 @@
 package repositories;
 
 import database.ConnectionFactory;
+import models.AlunoModel;
 import models.EquipeModel;
 import models.ProjetoModel;
 
@@ -101,5 +102,39 @@ public class ProjetoRepository {
             throw new RuntimeException(e);
         }
 
+    }
+    public static ArrayList<ProjetoModel> findByAluno(AlunoModel aluno){
+        ArrayList<ProjetoModel> projetos = new ArrayList<>();
+        try(Connection conn = ConnectionFactory.getConnection()){
+
+            String sql = "SELECT * " +
+                    "FROM PROJETO p " +
+                    "INNER JOIN Equipe e on p.fk_Equipe_id_equipe = e.Id_equipe " +
+                    "INNER JOIN Aluno a on a.matricula = e.fk_Alunos_matricula " +
+                    "where a.matricula = ?";
+
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1,aluno.getMatricula());
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                ProjetoModel projeto = new ProjetoModel();
+                projeto.setId(resultSet.getInt("id"));
+                projeto.setArea(resultSet.getString("area"));
+                projeto.setCidade(resultSet.getString("cidade"));
+                projeto.setEstado(resultSet.getString("estado"));
+                projeto.setDescricao(resultSet.getString("descricao"));
+                projeto.setTitulo(resultSet.getString("titulo"));
+                int idEquipe = resultSet.getInt("fk_Equipe_id_equipe");
+                EquipeModel equipe = EquipeRepository.findEquipe(idEquipe,conn);
+                projeto.setEquipe(equipe);
+                projetos.add(projeto);
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return projetos;
     }
 }

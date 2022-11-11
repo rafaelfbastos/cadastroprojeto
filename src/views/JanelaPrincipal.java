@@ -35,8 +35,16 @@ public class JanelaPrincipal extends JFrame {
     private JButton mostrarEquipeButton;
     private JButton atualizarProjetoButton;
     private JButton descricaoButton;
+    private JPanel pesquisarAluno;
+    private JTextField matriculaPesquisarField;
+    private JRadioButton informacoesRButton;
+    private JRadioButton projetosRButton;
+    private JRadioButton equipesRButton;
+    private JTable alunoTable;
+    private JButton atualizarCadastroButton;
     private ProjetoTableModel tableModel;
     private AlunosTableModel tableModelAluno;
+    private ButtonGroup buttonGroup;
 
 
     public JanelaPrincipal(Controller controller){
@@ -56,6 +64,13 @@ public class JanelaPrincipal extends JFrame {
     }
 
     private void configurarButtons(){
+
+        buttonGroup = new ButtonGroup();
+        buttonGroup.add(informacoesRButton);
+        buttonGroup.add(projetosRButton);
+        buttonGroup.add(equipesRButton);
+
+
         addButton.addActionListener(e -> {
             if(Validator.validarNumero(matriculaField.getText())){
                 int matricula = Integer.parseInt(matriculaField.getText());
@@ -134,7 +149,53 @@ public class JanelaPrincipal extends JFrame {
             }
 
         });
-
+        projetosRButton.addActionListener(e -> {
+            if(Validator.validarNumero(matriculaPesquisarField.getText())){
+                AlunoModel aluno = AlunoRepository.findByMatricula(Integer.parseInt(matriculaPesquisarField.getText()));
+                if(aluno!=null){
+                    ArrayList<ProjetoModel> projetos = ProjetoRepository.findByAluno(aluno);
+                    ProjetoTableModel projetoTableModel = new ProjetoTableModel(projetos);
+                    alunoTable.setModel(projetoTableModel);
+                    SwingUtilities.updateComponentTreeUI(alunoTable);
+                }
+                else JOptionPane.showMessageDialog(this,"Aluno não cadastrado:","Erro",JOptionPane.WARNING_MESSAGE);
+            }
+        });
+        informacoesRButton.addActionListener(e -> {
+            if(Validator.validarNumero(matriculaPesquisarField.getText())){
+                AlunoModel aluno = AlunoRepository.findByMatricula(Integer.parseInt(matriculaPesquisarField.getText()));
+                if(aluno!=null){
+                    ArrayList<AlunoModel> alunos = new ArrayList<>();
+                    alunos.add(aluno);
+                    AlunosTableModel alunosTableModel = new AlunosTableModel(alunos);
+                    alunoTable.setModel(alunosTableModel);
+                    SwingUtilities.updateComponentTreeUI(alunoTable);
+                }
+                else JOptionPane.showMessageDialog(this,"Aluno não cadastrado:","Erro",JOptionPane.WARNING_MESSAGE);
+            }
+        });
+        equipesRButton.addActionListener(e -> {
+            if(Validator.validarNumero(matriculaPesquisarField.getText())){
+                AlunoModel aluno = AlunoRepository.findByMatricula(Integer.parseInt(matriculaPesquisarField.getText()));
+                if(aluno!=null){
+                    ArrayList<EquipeQueryModel> equipe = new ArrayList<>();
+                    equipe = EquipeRepository.equipeQuery(aluno);
+                    EquipeTableModel equipeTableModel = new EquipeTableModel(equipe);
+                    alunoTable.setModel(equipeTableModel);
+                    SwingUtilities.updateComponentTreeUI(alunoTable);
+                }
+                else JOptionPane.showMessageDialog(this,"Aluno não cadastrado:","Erro",JOptionPane.WARNING_MESSAGE);
+            }
+        });
+        atualizarCadastroButton.addActionListener(e -> {
+            if(Validator.validarNumero(matriculaPesquisarField.getText())){
+                AlunoModel aluno = AlunoRepository.findByMatricula(Integer.parseInt(matriculaPesquisarField.getText()));
+                if(aluno!=null){
+                    new AlunoCadastro(aluno);
+                }
+                else JOptionPane.showMessageDialog(this,"Aluno não cadastrado:","Erro",JOptionPane.WARNING_MESSAGE);
+            }
+        });
 
 
     }

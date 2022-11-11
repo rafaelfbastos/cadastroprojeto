@@ -3,6 +3,7 @@ package repositories;
 import database.ConnectionFactory;
 import models.AlunoModel;
 import models.EquipeModel;
+import models.EquipeQueryModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -66,6 +67,38 @@ public class EquipeRepository {
         statement.setInt(1,id);
         statement.executeUpdate();
     }
+    public static ArrayList<EquipeQueryModel> equipeQuery(AlunoModel alunoModel){
+        ArrayList<EquipeQueryModel> equipe = new ArrayList<>();
 
+        try(Connection conn = ConnectionFactory.getConnection()){
+            String sql = "SELECT p.titulo, a.matricula, a.nome, a.curso, a.email, a.telefone " +
+                    "FROM Equipe e " +
+                    "INNER JOIN projeto p on p.fk_Equipe_id_equipe = e.Id_equipe " +
+                    "INNER JOIN Aluno a on a.matricula = e.fk_Alunos_matricula " +
+                    "where a.matricula = ?";
+
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1,alunoModel.getMatricula());
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                EquipeQueryModel queryModel = new EquipeQueryModel(
+                        resultSet.getString(1),
+                        resultSet.getInt(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6)
+                );
+                equipe.add(queryModel);
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return equipe;
+    }
 
 }

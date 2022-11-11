@@ -298,6 +298,130 @@
               </grid>
             </children>
           </grid>
+          <grid id="20e0b" binding="pesquisarAluno" layout-manager="BorderLayout" hgap="10" vgap="20">
+            <constraints>
+              <tabbedpane title="Pesquisar Aluno"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="e847c" layout-manager="FormLayout">
+                <rowspec value="center:d:grow"/>
+                <rowspec value="top:4dlu:noGrow"/>
+                <rowspec value="center:d:noGrow"/>
+                <colspec value="fill:d:grow"/>
+                <colspec value="left:4dlu:noGrow"/>
+                <colspec value="fill:d:noGrow"/>
+                <colspec value="left:4dlu:noGrow"/>
+                <colspec value="fill:d:grow"/>
+                <colspec value="left:4dlu:noGrow"/>
+                <colspec value="fill:max(d;4px):noGrow"/>
+                <colspec value="left:4dlu:noGrow"/>
+                <colspec value="fill:max(d;4px):noGrow"/>
+                <colspec value="left:4dlu:noGrow"/>
+                <colspec value="fill:max(d;4px):noGrow"/>
+                <colspec value="left:4dlu:noGrow"/>
+                <colspec value="fill:d:grow"/>
+                <colspec value="left:4dlu:noGrow"/>
+                <colspec value="fill:d:grow"/>
+                <constraints border-constraint="North"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="f1ded" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <forms top="5" left="5" bottom="5" right="5"/>
+                    </constraints>
+                    <properties>
+                      <font name="JetBrains Mono" size="14" style="0"/>
+                      <preferredSize width="120" height="17"/>
+                      <text value="Matricula: "/>
+                    </properties>
+                  </component>
+                  <component id="9a57" class="javax.swing.JTextField" binding="matriculaPesquisarField">
+                    <constraints>
+                      <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                      <forms defaultalign-horz="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="DialogInput" size="14" style="0"/>
+                      <preferredSize width="-1" height="30"/>
+                    </properties>
+                  </component>
+                  <component id="a3c17" class="javax.swing.JRadioButton" binding="informacoesRButton">
+                    <constraints>
+                      <grid row="2" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <forms/>
+                    </constraints>
+                    <properties>
+                      <text value="Informações"/>
+                    </properties>
+                  </component>
+                  <component id="5187a" class="javax.swing.JRadioButton" binding="projetosRButton">
+                    <constraints>
+                      <grid row="2" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <forms/>
+                    </constraints>
+                    <properties>
+                      <text value="Projetos"/>
+                    </properties>
+                  </component>
+                  <component id="c537a" class="javax.swing.JRadioButton" binding="equipesRButton">
+                    <constraints>
+                      <grid row="2" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <forms top="0" left="0" bottom="0" right="10"/>
+                    </constraints>
+                    <properties>
+                      <maximumSize width="100" height="21"/>
+                      <preferredSize width="100" height="21"/>
+                      <text value="Equipes"/>
+                    </properties>
+                  </component>
+                  <hspacer id="3df5b">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <forms defaultalign-horz="false"/>
+                    </constraints>
+                  </hspacer>
+                  <vspacer id="8b432">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                      <forms defaultalign-vert="false"/>
+                    </constraints>
+                  </vspacer>
+                  <component id="89960" class="javax.swing.JButton" binding="atualizarCadastroButton" default-binding="true">
+                    <constraints>
+                      <grid row="2" column="12" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <forms/>
+                    </constraints>
+                    <properties>
+                      <text value="Atualizar Cadastro"/>
+                    </properties>
+                  </component>
+                  <hspacer id="ac64">
+                    <constraints>
+                      <grid row="2" column="14" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <forms defaultalign-horz="false"/>
+                    </constraints>
+                  </hspacer>
+                </children>
+              </grid>
+              <scrollpane id="8d932">
+                <constraints border-constraint="Center"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="8a8fc" class="javax.swing.JTable" binding="alunoTable">
+                    <constraints/>
+                    <properties/>
+                  </component>
+                </children>
+              </scrollpane>
+            </children>
+          </grid>
         </children>
       </tabbedpane>
       <grid id="661e3" layout-manager="FormLayout">
