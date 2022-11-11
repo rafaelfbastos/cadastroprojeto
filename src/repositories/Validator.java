@@ -8,7 +8,7 @@ public class Validator {
     public static boolean validarTexto(String texto) {
         if (texto != null) {
             if (!texto.isEmpty()) {
-                return texto.chars().allMatch(value -> Character.isWhitespace(value)||Character.isAlphabetic(value));
+                return texto.chars().allMatch(value -> Character.isWhitespace(value)||Character.isAlphabetic(value)||Character.isDigit(value));
             } else {
                 return false;
             }
@@ -53,5 +53,16 @@ public class Validator {
 
         return false;
     }
+    public static boolean validarSimples(String texto) {
+        if (texto != null) {
+            if (!texto.isEmpty()) {
+                return true;
+            }else {
+                return false;
+            }
+        }
+        return false;
+    }
+
 
 }

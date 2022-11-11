@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="views.AtualizarProjeto">
+  <grid id="27dc6" binding="panel1" layout-manager="BorderLayout" hgap="20" vgap="20">
+    <constraints>
+      <xy x="20" y="20" width="682" height="584"/>
+    </constraints>
+    <properties>
+      <preferredSize width="800" height="600"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="a065" binding="CadastarProjeto" layout-manager="GridLayoutManager" row-count="7" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="20" vgap="20">
+        <margin top="20" left="10" bottom="10" right="10"/>
+        <constraints border-constraint="Center"/>
+        <properties>
+          <autoscrolls value="true"/>
+          <requestFocusEnabled value="true"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="8f359" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="JetBrains Mono" size="16" style="0"/>
+              <text value="Titulo:"/>
+            </properties>
+          </component>
+          <component id="95dd3" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="JetBrains Mono" size="16" style="0"/>
+              <text value="Area:"/>
+            </properties>
+          </component>
+          <component id="76cd9" class="javax.swing.JTextField" binding="tituloField">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="DialogInput" size="14" style="0"/>
+            </properties>
+          </component>
+          <component id="9f765" class="javax.swing.JTextField" binding="areaField">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="DialogInput" size="14" style="0"/>
+            </properties>
+          </component>
+          <component id="35d35" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="JetBrains Mono" size="16" style="0"/>
+              <text value="Cidade: "/>
+            </properties>
+          </component>
+          <component id="9c0b2" class="javax.swing.JTextField" binding="cidadeField">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="DialogInput" size="14" style="0"/>
+            </properties>
+          </component>
+          <component id="49d5f" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="JetBrains Mono" size="16" style="0"/>
+              <text value="Estado"/>
+            </properties>
+          </component>
+          <component id="501ed" class="javax.swing.JTextField" binding="estadoField">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="DialogInput" size="14" style="0"/>
+            </properties>
+          </component>
+          <component id="e0646" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="JetBrains Mono" size="16" style="0"/>
+              <text value="Descrição: "/>
+            </properties>
+          </component>
+          <component id="3493d" class="javax.swing.JTextArea" binding="descricaoArea">
+            <constraints>
+              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="50"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="DialogInput" size="14" style="0"/>
+              <lineWrap value="true"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="61417" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="JetBrains Mono" size="16" style="0"/>
+              <text value="Equipe:"/>
+            </properties>
+          </component>
+          <grid id="64b97" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="3030a" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="JetBrains Mono" size="16" style="0"/>
+                  <text value="Matricula: "/>
+                </properties>
+              </component>
+              <component id="70fe8" class="javax.swing.JTextField" binding="matriculaField">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="30"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font name="DialogInput" size="14" style="0"/>
+                </properties>
+              </component>
+              <component id="7e944" class="javax.swing.JButton" binding="addButton">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <actionCommand value=""/>
+                  <text value="+"/>
+                </properties>
+              </component>
+              <component id="6d9b3" class="javax.swing.JList" binding="list1" default-binding="true">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="50"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="bac3b" class="javax.swing.JButton" binding="removerButton">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="5" height="5"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="-"/>
+                </properties>
+              </component>
+              <component id="fc508" class="javax.swing.JButton" binding="atualizarDadosDoAlunoButton" default-binding="true">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Atualizar dados do Aluno"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="a3759" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints>
+              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="2876" class="javax.swing.JButton" binding="atualizarButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Atualizar "/>
+                </properties>
+              </component>
+              <component id="2911c" class="javax.swing.JButton" binding="apagarButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Apagar"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="fbedd" layout-manager="FormLayout">
+        <rowspec value="center:max(d;4px):noGrow"/>
+        <colspec value="fill:d:grow"/>
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="417c6" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <forms/>
+            </constraints>
+            <properties>
+              <font name="JetBrains Mono" size="36" style="1"/>
+              <horizontalAlignment value="0"/>
+              <text value="Atualizar Projeto"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

@@ -1,6 +1,5 @@
 package repositories;
 
-import Exceptions.InputException;
 import database.ConnectionFactory;
 import models.AlunoModel;
 
@@ -17,7 +16,7 @@ public class AlunoRepository {
     public static void gravar(AlunoModel aluno){
         try(Connection conn = ConnectionFactory.getConnection()){
 
-           String sql = "insert into aluno(matricula,nome,email,telefone,curso) values(?,?,?,?,?)";
+           String sql = "insert into aluno(matricula,nome,email,telefone,curso,senha) values(?,?,?,?,?,?)";
            PreparedStatement statement = conn.prepareStatement(sql);
 
            statement.setInt(1,aluno.getMatricula());
@@ -25,6 +24,7 @@ public class AlunoRepository {
            statement.setString(3,aluno.getEmail());
            statement.setString(4,aluno.getTelefone());
            statement.setString(5, aluno.getCurso());
+           statement.setInt(6,aluno.getSenha());
 
            statement.executeUpdate();
 
@@ -56,7 +56,9 @@ public class AlunoRepository {
                         resultSet.getString("nome"),
                         resultSet.getString("email"),
                         resultSet.getString("telefone"),
-                        resultSet.getString("curso")
+                        resultSet.getString("curso"),
+                        resultSet.getInt("senha")
+
                 );
             }
 
@@ -92,6 +94,28 @@ public class AlunoRepository {
             }
             e.printStackTrace();
         }
+    }
+    public static AlunoModel findByMatricula(int matricula,Connection conn) throws SQLException {
+        AlunoModel aluno = null;
+
+        String sql = "select * from aluno where matricula = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setInt(1,matricula);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()){
+            aluno = new AlunoModel(
+                    resultSet.getInt("matricula"),
+                    resultSet.getString("nome"),
+                    resultSet.getString("email"),
+                    resultSet.getString("telefone"),
+                    resultSet.getString("curso"),
+                    resultSet.getInt("senha")
+            );
+        }
+
+        return aluno;
     }
 
 

@@ -9,13 +9,15 @@ public class AlunoModel {
     private String email;
     private String telefone;
     private String curso;
+    private int senha;
 
-    public AlunoModel(int matricula, String nome, String email, String telefone, String curso) {
+    public AlunoModel(int matricula, String nome, String email, String telefone, String curso, int senha) {
         this.matricula = matricula;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.curso = curso;
+        this.senha = senha;
     }
 
     public AlunoModel(){}
@@ -58,6 +60,14 @@ public class AlunoModel {
 
     public void setCurso(String curso) {
         this.curso = curso;
+    }
+
+    public int getSenha() {
+        return senha;
+    }
+
+    public void setSenha(int senha) {
+        this.senha = senha;
     }
 
     @Override

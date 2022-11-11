@@ -1,16 +1,14 @@
 package views;
 
 import app.Controller;
-import models.AlunoModel;
-import models.EquipeListModel;
-import models.EquipeModel;
-import models.ProjetoModel;
+import models.*;
 import repositories.AlunoRepository;
 import repositories.EquipeRepository;
 import repositories.ProjetoRepository;
 import repositories.Validator;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class JanelaPrincipal extends JFrame {
 
@@ -31,15 +29,29 @@ public class JanelaPrincipal extends JFrame {
     private JButton cadastrarProjetoButton;
     private JButton limparFormulárioButton;
     private JButton atualizarDadosDoAlunoButton;
+    private JTable table;
+
+    private JTable table1;
+    private JButton mostrarEquipeButton;
+    private JButton atualizarProjetoButton;
+    private JButton descricaoButton;
+    private ProjetoTableModel tableModel;
+    private AlunosTableModel tableModelAluno;
+
 
     public JanelaPrincipal(Controller controller){
         super("Cadastro de Projetos");
         configurarButtons();
         configurarJList();
+        controller.setProjetos(ProjetoRepository.findAll());
+
         this.controller = controller;
         add(panel1);
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+
         setVisible(true);
     }
 
@@ -65,7 +77,7 @@ public class JanelaPrincipal extends JFrame {
 
         });
         limparFormulárioButton.addActionListener(e -> {
-            liparForm();
+            limparForm();
         });
 
         cadastrarProjetoButton.addActionListener(e->{
@@ -83,7 +95,9 @@ public class JanelaPrincipal extends JFrame {
                 projeto.setEquipe(equipe);
                 projeto.setTitulo(tituloField.getText());
                 ProjetoRepository.add(projeto);
-                liparForm();
+                limparForm();
+                controller.setProjetos(ProjetoRepository.findAll());
+                tableModel.setProjetos(controller.getProjetos());
             }
         });
 
@@ -94,6 +108,35 @@ public class JanelaPrincipal extends JFrame {
 
             }
         });
+
+        mostrarEquipeButton.addActionListener(e -> {
+            int index = table.getSelectedRow();
+            if(index>=0){
+                tableModelAluno.setAlunos(controller.getProjetos().get(index).getEquipe().getAlunos());
+                table1.setModel(tableModelAluno);
+                SwingUtilities.updateComponentTreeUI(table1);
+            }
+        });
+        atualizarProjetoButton.addActionListener(e -> {
+            int index = table.getSelectedRow();
+            if(index>=0){
+               ProjetoModel projeto = controller.getProjetos().get(index);
+               new AtualizarProjeto(controller,projeto);
+            }
+        });
+
+        descricaoButton.addActionListener(e -> {
+            int index = table.getSelectedRow();
+            if(index>=0){
+                ProjetoModel projeto = controller.getProjetos().get(index);
+
+                JOptionPane.showMessageDialog(this,projeto.getDescricao(),"Descrição",JOptionPane.PLAIN_MESSAGE);
+            }
+
+        });
+
+
+
     }
     private void configurarJList(){
         EquipeListModel listModel = new EquipeListModel(Controller.getInstance().getEquipe());
@@ -103,38 +146,45 @@ public class JanelaPrincipal extends JFrame {
 
     private boolean validarForm(){
 
-        if(!Validator.validarTexto(tituloField.getText())){
-            JOptionPane.showConfirmDialog(this,"Digite um título válido:","Erro",JOptionPane.ERROR_MESSAGE);
+        if(!Validator.validarSimples(tituloField.getText())){
+            JOptionPane.showMessageDialog(this,"Digite um título válido:","Erro",JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if(!Validator.validarTexto(areaField.getText())){
-            JOptionPane.showConfirmDialog(this,"Escolha uma area:","Erro",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Digite um area válido:","Erro",JOptionPane.WARNING_MESSAGE);
             return false;
         }
-        if(!Validator.validarTexto(tituloField.getText())){
-            JOptionPane.showConfirmDialog(this,"Digite um título válido:","Erro",JOptionPane.ERROR_MESSAGE);
-            return  false;
-        }
         if(!Validator.validarTexto(cidadeField.getText())){
-            JOptionPane.showConfirmDialog(this,"Digite uma cidade válido:","Erro",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Digite um Cidade válido:","Erro",JOptionPane.WARNING_MESSAGE);
             return false;
         }
         if(!Validator.validarTexto(estadoField.getText())){
-            JOptionPane.showConfirmDialog(this,"Digite um estado válido:","Erro",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Digite um Estado válido:","Erro",JOptionPane.WARNING_MESSAGE);
             return false;
         }
+        if(!Validator.validarSimples(descricaoArea.getText())){
+            JOptionPane.showMessageDialog(this,"Digite uma descrição válido:","Erro",JOptionPane.WARNING_MESSAGE);
+            return  false;
+        }
         if(controller.getEquipe().size() == 0){
-            JOptionPane.showConfirmDialog(this,"Equipe deve ter ao menos 1 aluno","Erro",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Equipe deve ter ao menos 1 aluno","Erro",JOptionPane.WARNING_MESSAGE);
             return false;
         }
         return true;
     }
 
+    public void updateTable(){
 
-    public void render(){
-        SwingUtilities.updateComponentTreeUI(list1);
+        tableModel.setProjetos(controller.getProjetos());
+        table.setModel(tableModel);
     }
-    public void liparForm(){
+    public void render(){
+        updateTable();
+        SwingUtilities.updateComponentTreeUI(list1);
+        SwingUtilities.updateComponentTreeUI(table);
+        SwingUtilities.updateComponentTreeUI(table1);
+    }
+    public void limparForm(){
         Controller.getInstance().getEquipe().clear();
         tituloField.setText("");
         areaField.setText("");
@@ -145,6 +195,16 @@ public class JanelaPrincipal extends JFrame {
         descricaoArea.setText("");
         matriculaField.setText("");
         render();
+
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+        tableModel = new ProjetoTableModel(ProjetoRepository.findAll());
+        tableModelAluno = new AlunosTableModel(new ArrayList<>());
+        table = new JTable(tableModel);
+        table1 = new JTable(tableModelAluno);
+
 
     }
 }
