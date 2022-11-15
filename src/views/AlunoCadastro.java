@@ -29,7 +29,12 @@ public class AlunoCadastro extends JFrame{
         setLocation(200,100);
         setPreferredSize(new Dimension(400,400));
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        matriculaField.setText(""+matricula);
+        cadastrarButton.setText("Atualizar");
+        matriculaField.setText(""+alunoModel.getMatricula());
+        cursoField.setText(alunoModel.getCurso());
+        EmailField.setText(alunoModel.getEmail());
+        telefoneField.setText(alunoModel.getTelefone());
+        nomeField.setText(alunoModel.getNome());
         matriculaField.setEditable(false);
         cadastrarButton.addActionListener(e -> {
             if(validarInput()){

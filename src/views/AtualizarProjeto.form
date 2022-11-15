@@ -14,6 +14,8 @@
         <constraints border-constraint="Center"/>
         <properties>
           <autoscrolls value="true"/>
+          <opaque value="false"/>
+          <preferredSize width="800" height="800"/>
           <requestFocusEnabled value="true"/>
         </properties>
         <border type="none"/>

@@ -14,19 +14,19 @@ import java.util.ArrayList;
 public class EquipeRepository {
 
     public static int nEquipes(){
-        int contador=0;
+        int ultimoId=0;
         try(Connection conn = ConnectionFactory.getConnection()){
             String sql = "SELECT max(Id_equipe) FROM Equipe";
             PreparedStatement statement = conn.prepareStatement(sql);
 
             ResultSet resultSet = statement.executeQuery();
 
-            contador = resultSet.getInt(1);
+            ultimoId = resultSet.getInt(1);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return contador;
+        return ultimoId;
     }
     public static void add (EquipeModel equipe){
 
@@ -71,29 +71,40 @@ public class EquipeRepository {
         ArrayList<EquipeQueryModel> equipe = new ArrayList<>();
 
         try(Connection conn = ConnectionFactory.getConnection()){
-            String sql = "SELECT p.titulo, a.matricula, a.nome, a.curso, a.email, a.telefone " +
-                    "FROM Equipe e " +
-                    "INNER JOIN projeto p on p.fk_Equipe_id_equipe = e.Id_equipe " +
-                    "INNER JOIN Aluno a on a.matricula = e.fk_Alunos_matricula " +
+            String sql = "SELECT e.Id_equipe " +
+                    "FROM Equipe e "+
+                    "INNER JOIN Aluno a on a.matricula = e.fk_Alunos_matricula "+
                     "where a.matricula = ?";
 
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1,alunoModel.getMatricula());
 
-            ResultSet resultSet = statement.executeQuery();
+            ResultSet resul = statement.executeQuery();
 
-            while (resultSet.next()){
-                EquipeQueryModel queryModel = new EquipeQueryModel(
-                        resultSet.getString(1),
-                        resultSet.getInt(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getString(5),
-                        resultSet.getString(6)
-                );
-                equipe.add(queryModel);
+            while (resul.next()){
+
+                sql = "SELECT p.titulo, a.matricula, a.nome, a.curso, a.email, a.telefone " +
+                        "FROM Projeto p " +
+                        "INNER JOIN Equipe e on p.fk_Equipe_id_equipe = e.Id_equipe " +
+                        "INNER JOIN Aluno a on a.matricula = e.fk_Alunos_matricula " +
+                        "where e.Id_equipe =?";
+
+                statement = conn.prepareStatement(sql);
+                statement.setInt(1,resul.getInt(1));
+
+                ResultSet resultSet= statement.executeQuery();
+                while (resultSet.next()){
+                    EquipeQueryModel queryModel = new EquipeQueryModel(
+                            resultSet.getString(1),
+                            resultSet.getInt(2),
+                            resultSet.getString(3),
+                            resultSet.getString(4),
+                            resultSet.getString(5),
+                            resultSet.getString(6)
+                    );
+                    equipe.add(queryModel);
+                }
             }
-
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

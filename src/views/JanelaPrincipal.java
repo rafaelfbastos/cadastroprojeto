@@ -7,7 +7,11 @@ import repositories.EquipeRepository;
 import repositories.ProjetoRepository;
 import repositories.Validator;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class JanelaPrincipal extends JFrame {
@@ -42,6 +46,7 @@ public class JanelaPrincipal extends JFrame {
     private JRadioButton equipesRButton;
     private JTable alunoTable;
     private JButton atualizarCadastroButton;
+    private JLabel iconLabel;
     private ProjetoTableModel tableModel;
     private AlunosTableModel tableModelAluno;
     private ButtonGroup buttonGroup;
@@ -120,7 +125,6 @@ public class JanelaPrincipal extends JFrame {
             if(list1.getSelectedIndex()>=0){
                 AlunoModel aluno = Controller.getInstance().getEquipe().get(list1.getSelectedIndex());
                 new AlunoCadastro(controller,aluno);
-
             }
         });
 
@@ -265,6 +269,12 @@ public class JanelaPrincipal extends JFrame {
         tableModelAluno = new AlunosTableModel(new ArrayList<>());
         table = new JTable(tableModel);
         table1 = new JTable(tableModelAluno);
+        try {
+            BufferedImage imageBuffered = ImageIO.read(getClass().getResource("/Logo_Unijorge.png"));
+            iconLabel = new JLabel(new ImageIcon(imageBuffered));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
 
     }

@@ -44,6 +44,7 @@ public class AtualizarProjeto extends JFrame {
         pack();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
+
     }
 
     private void configurarButtons(){

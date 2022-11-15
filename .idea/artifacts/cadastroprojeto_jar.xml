@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="cadastroprojeto:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/cadastroprojeto_jar</output-path>
+    <root id="archive" name="cadastroprojeto.jar">
+      <element id="module-output" name="cadastroprojeto" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/xerial/sqlite-jdbc/3.39.3.0/sqlite-jdbc-3.39.3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/jgoodies/jgoodies-forms/1.9.0/jgoodies-forms-1.9.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/jgoodies/jgoodies-common/1.8.1/jgoodies-common-1.8.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
