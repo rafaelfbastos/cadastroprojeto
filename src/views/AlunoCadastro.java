@@ -45,8 +45,11 @@ public class AlunoCadastro extends JFrame{
                 aluno.setTelefone(telefoneField.getText());
                 aluno.setNome(nomeField.getText());
                 aluno.setSenha(String.valueOf(passwordField.getPassword()).hashCode());
-                AlunoRepository.update(aluno);
-                dispose();
+                if(validarSenha(alunoModel)){
+                    AlunoRepository.update(aluno);
+                    dispose();
+                }
+
 
             }
         });
