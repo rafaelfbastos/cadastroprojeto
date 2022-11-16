@@ -422,7 +422,7 @@
               </scrollpane>
             </children>
           </grid>
-          <grid id="d2a5a" layout-manager="GridLayoutManager" row-count="7" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="25">
+          <grid id="d2a5a" layout-manager="GridLayoutManager" row-count="12" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="25">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <tabbedpane title="Sobre"/>
@@ -461,7 +461,7 @@
               </component>
               <vspacer id="16c08">
                 <constraints>
-                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                  <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
               <vspacer id="49f32">
@@ -485,7 +485,57 @@
                 <properties>
                   <focusable value="false"/>
                   <font name="JetBrains Mono" size="14" style="0"/>
+                  <text value="Ayon Dourado Alves De Souza"/>
+                </properties>
+              </component>
+              <component id="b3b37" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <focusable value="false"/>
+                  <font name="JetBrains Mono" size="14" style="0"/>
                   <text value="Rafael Ferreira Bastos"/>
+                </properties>
+              </component>
+              <component id="39da0" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <focusable value="false"/>
+                  <font name="JetBrains Mono" size="14" style="0"/>
+                  <text value="Matheus Santos Dória"/>
+                </properties>
+              </component>
+              <component id="3475e" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <focusable value="false"/>
+                  <font name="JetBrains Mono" size="14" style="0"/>
+                  <text value="Rafael do Carmo Costa"/>
+                </properties>
+              </component>
+              <component id="5cd65" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <focusable value="false"/>
+                  <font name="JetBrains Mono" size="14" style="0"/>
+                  <text value="Igor Uaná Bezerra Gasparim"/>
+                </properties>
+              </component>
+              <component id="5f240" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <focusable value="false"/>
+                  <font name="JetBrains Mono" size="14" style="0"/>
+                  <text value="Walace Lopes da Silva"/>
                 </properties>
               </component>
             </children>
